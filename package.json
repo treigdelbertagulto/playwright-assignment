@@ -1,0 +1,21 @@
+{
+  "name": "playwright-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "stg:test": "cross-env test_env=stg npx playwright test --project=chromium",
+    "stg:test:headed": "cross-env test_env=stg npx playwright test --project=chromium --headed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.26"
+  }
+}
