@@ -61,7 +61,7 @@ export default class NewsFeedPageObject {
   async createAlbum(albumLabel: string) {
     const albumFieldId = await this.page.getByText(this.input_albumTitle_text).nth(0).getAttribute("for");
     await this.page.locator(`//input[@id="${albumFieldId}"]`).fill(albumLabel);
-    await this.page.keyboard.down("Enter");
+    await this.page.keyboard.down("Escape");
     await this.page.locator(this.button_createAlbum).nth(1).click();
   }
 

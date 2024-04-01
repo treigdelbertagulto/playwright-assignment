@@ -4,17 +4,13 @@ import LoginPageObject from "../utils/modules/login-pageObject";
 import NewsFeedPageObject from "../utils/modules/newsFeed-pageObject";
 
 test.describe("News Feed Page UI Automation", () => {
+  const envUtil = new ENV();
   let page: Page;
-  let envUtil: ENV;
   let loginPageObject: LoginPageObject;
   let newsFeedPageObject: NewsFeedPageObject;
   let context: BrowserContext;
-  let token: string;
 
-  test.beforeEach(async ({browser}) => {
-    envUtil = new ENV();
-
-    context = await browser.newContext({
+  test.beforeEach(async ({browser}) => {context = await browser.newContext({
       httpCredentials: {
         username: envUtil.getHttpCredentialsUsername(),
         password: envUtil.getHttpCredentialsPassword(),
@@ -22,7 +18,7 @@ test.describe("News Feed Page UI Automation", () => {
     });
     page = await context.newPage();
     loginPageObject = new LoginPageObject(page);
-    token = await loginPageObject.loginAs(envUtil.getUserToken());
+    await loginPageObject.loginAs(envUtil.getUserToken());
 
     await test.step("Given I am on the News Feed Page", async () => {
       await page.goto(`${envUtil.getBaseUrl()}/news-feed`);
@@ -98,7 +94,7 @@ test.describe("News Feed Page UI Automation", () => {
     });
   });
 
-  test.only("I should be able to create a text with a photo post", async () => {
+  test("I should be able to create a text with a photo post", async () => {
     const albumTitle = `Fashion ${Math.random()}`
     const imageFilename = "./test-data/sample_image.jpg"
 
